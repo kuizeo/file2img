@@ -65,7 +65,8 @@ while col < image_size:
     )
 
     row += 1
-    if not args.quiet: bar.next()
+    if not args.quiet:
+        bar.next()
 
     if row == image_size:
         row = 0
@@ -75,20 +76,21 @@ while col < image_size:
 out.putpixel(
     (image_size - 1, image_size - 2),
     (
-        (image_size & 0xFF0000000000) >> 40,
-        (image_size & 0x00FF00000000) >> 32,
-        (image_size & 0x0000FF000000) >> 24,
+        (file_size & 0xFF0000000000) >> 40,
+        (file_size & 0x00FF00000000) >> 32,
+        (file_size & 0x0000FF000000) >> 24,
     ),
 )
 
 out.putpixel(
     (image_size - 1, image_size - 1),
     (
-        (image_size & 0x000000FF0000) >> 16,
-        (image_size & 0x00000000FF00) >> 8,
-        (image_size & 0x0000000000FF),
+        (file_size & 0x000000FF0000) >> 16,
+        (file_size & 0x00000000FF00) >> 8,
+        (file_size & 0x0000000000FF),
     ),
 )
 
 out.save(args.output)
-if not args.quiet: bar.finish()
+if not args.quiet:
+    bar.finish()
